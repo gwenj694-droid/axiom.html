@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>THE AXIOM | SIGNATURE 7</title>
+    <style>
+        body { background: #000; color: #d4af37; font-family: serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        #box { width: 400px; padding: 40px; border: 1px solid #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.1); }
+        h1 { letter-spacing: 5px; font-weight: 100; margin-bottom: 30px; }
+        input { background: none; border: none; border-bottom: 1px solid #333; color: #fff; width: 100%; padding: 10px; margin-bottom: 20px; outline: none; text-align: center; font-size: 1rem; }
+        input:focus { border-bottom: 1px solid #d4af37; }
+        button { background: none; border: 1px solid #d4af37; color: #d4af37; padding: 10px 30px; cursor: pointer; letter-spacing: 2px; transition: 0.5s; text-transform: uppercase; }
+        button:hover { background: #d4af37; color: #000; }
+        #status { margin-top: 20px; font-size: 0.8rem; letter-spacing: 1px; display: none; color: #fff; }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1 style="margin:0;">THE AXIOM</h1>
+        <p style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 30px; color: #d4af37;">REVENUE NODE ACTIVATION</p>
+        
+        <form id="axiomForm">
+            <input type="text" id="brand" placeholder="BRAND NAME" required>
+            <input type="text" id="offer" placeholder="OFFER / COURSE NAME" required>
+            <input type="email" id="email" placeholder="YOUR EMAIL" required>
+            <br><br>
+            <button type="submit">INITIALIZE BUILD</button>
+        </form>
+
+        <div id="status">ARCHITECTING ASSETS... <br>CHECK YOUR INBOX IN 60 SECONDS.</div>
+    </div>
+
+    <script>
+        document.getElementById('axiomForm').onsubmit = function(e) {
+            e.preventDefault();
+            document.getElementById('axiomForm').style.display = 'none';
+            document.getElementById('status').style.display = 'block';
+
+            // REPLACE THE LINK BELOW WITH YOUR ZAPIER WEBHOOK
+            fetch('https://hooks.zapier.com/hooks/catch/24001102/uqiryky/', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    brand: document.getElementById('brand').value,
+                    offer: document.getElementById('offer').value,
+                    email: document.getElementById('email').value
+                })
+            });
+        };
+    </script>
+</body>
+</html>
