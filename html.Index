@@ -36,7 +36,7 @@
             document.getElementById('status').style.display = 'block';
 
             // THE ZAPIER WEBHOOK LINK GOES BELOW
-            fetch('YOUR_ZAPIER_WEBHOOK_URL', {
+            fetch('https://hooks.zapier.com/hooks/catch/24001102/uqiryky/', {
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify({
