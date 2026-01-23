@@ -29,7 +29,8 @@
     </div>
 
     <script>
-        const CITADEL_URL = 'PASTE_YOUR_GOOGLE_WEB_APP_URL_HERE';
+        // YOUR CUSTOM SCRIPT LINK IS NOW HARD-CODED BELOW
+        const CITADEL_URL = 'https://script.google.com/macros/s/AKfycbzatPFum-tfvQj2joKdUmiPZlQXyUuM1jpw3gGofAKJzFn5KLhEd-QjbN2jNpLdB48Mfw/exec';
 
         document.getElementById('axiomForm').onsubmit = function(e) {
             e.preventDefault();
@@ -46,7 +47,6 @@
             fetch(CITADEL_URL, {
                 method: 'POST',
                 mode: 'no-cors', 
-                cache: 'no-cache',
                 body: JSON.stringify(data)
             }).then(() => {
                 document.getElementById('axiomForm').style.display = 'none';
