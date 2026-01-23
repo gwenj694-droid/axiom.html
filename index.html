@@ -4,47 +4,57 @@
     <title>THE AXIOM | SIGNATURE 7</title>
     <style>
         body { background: #000; color: #d4af37; font-family: serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        #box { width: 400px; padding: 40px; border: 1px solid #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.1); }
-        h1 { letter-spacing: 5px; font-weight: 100; margin-bottom: 30px; }
-        input { background: none; border: none; border-bottom: 1px solid #333; color: #fff; width: 100%; padding: 10px; margin-bottom: 20px; outline: none; text-align: center; font-size: 1rem; }
+        #box { width: 400px; padding: 50px; border: 1px solid #d4af37; text-align: center; box-shadow: 0 0 40px rgba(212, 175, 55, 0.1); }
+        h1 { letter-spacing: 6px; font-weight: 100; margin: 0; }
+        input { background: none; border: none; border-bottom: 1px solid #222; color: #fff; width: 100%; padding: 12px; margin-bottom: 25px; outline: none; text-align: center; font-size: 1rem; transition: 0.3s; }
         input:focus { border-bottom: 1px solid #d4af37; }
-        button { background: none; border: 1px solid #d4af37; color: #d4af37; padding: 10px 30px; cursor: pointer; letter-spacing: 2px; transition: 0.5s; text-transform: uppercase; }
+        button { background: none; border: 1px solid #d4af37; color: #d4af37; padding: 12px 40px; cursor: pointer; letter-spacing: 3px; transition: 0.5s; text-transform: uppercase; margin-top: 10px; }
         button:hover { background: #d4af37; color: #000; }
-        #status { margin-top: 20px; font-size: 0.8rem; letter-spacing: 1px; display: none; color: #fff; }
+        #status { margin-top: 30px; font-size: 0.75rem; letter-spacing: 2px; display: none; color: #fff; line-height: 1.6; }
     </style>
 </head>
 <body>
     <div id="box">
-        <h1 style="margin:0;">THE AXIOM</h1>
-        <p style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 30px; color: #d4af37;">REVENUE NODE ACTIVATION</p>
+        <h1>THE AXIOM</h1>
+        <p style="font-size: 0.65rem; letter-spacing: 3px; margin-bottom: 40px; color: #d4af37; opacity: 0.8;">REVENUE NODE ACTIVATION</p>
         
         <form id="axiomForm">
             <input type="text" id="brand" placeholder="BRAND NAME" required>
             <input type="text" id="offer" placeholder="OFFER / COURSE NAME" required>
-            <input type="email" id="email" placeholder="YOUR EMAIL" required>
-            <br><br>
-            <button type="submit">INITIALIZE BUILD</button>
+            <input type="email" id="email" placeholder="SOVEREIGN EMAIL" required>
+            <button type="submit" id="submitBtn">INITIALIZE BUILD</button>
         </form>
 
-        <div id="status">ARCHITECTING ASSETS... <br>CHECK YOUR INBOX IN 60 SECONDS.</div>
+        <div id="status">ARCHITECTING ASSETS... <br>YOUR PDF IS BEING DISPATCHED TO YOUR INBOX.</div>
     </div>
 
     <script>
+        const CITADEL_URL = 'PASTE_YOUR_GOOGLE_WEB_APP_URL_HERE';
+
         document.getElementById('axiomForm').onsubmit = function(e) {
             e.preventDefault();
-            document.getElementById('axiomForm').style.display = 'none';
-            document.getElementById('status').style.display = 'block';
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = "MANIFESTING...";
+            btn.disabled = true;
 
-            // REPLACE THE LINK BELOW WITH YOUR ZAPIER WEBHOOK
-            fetch('https://hooks.zapier.com/hooks/catch/24001102/uqiryky/', {
+            const data = {
+                brand: document.getElementById('brand').value,
+                offer: document.getElementById('offer').value,
+                email: document.getElementById('email').value
+            };
+
+            fetch(CITADEL_URL, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    brand: document.getElementById('brand').value,
-                    offer: document.getElementById('offer').value,
-                    email: document.getElementById('email').value
-                })
+                mode: 'no-cors', 
+                cache: 'no-cache',
+                body: JSON.stringify(data)
+            }).then(() => {
+                document.getElementById('axiomForm').style.display = 'none';
+                document.getElementById('status').style.display = 'block';
+            }).catch(err => {
+                alert("Connection to Citadel interrupted.");
+                btn.disabled = false;
+                btn.innerHTML = "INITIALIZE BUILD";
             });
         };
     </script>
